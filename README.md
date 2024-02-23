@@ -1,6 +1,4 @@
-Learning backend with : 
-1.Node.js [JRE - javascript run-time environment] 
-2.Express.js - Javascript framework for server side development
+Learning backend with : Node.js & Express.js
 ----------------------------------------------------------------------------------------------
 Why Node or Express ?
 => Node.js : Purpose: Runtime environment for server-side JavaScript.
