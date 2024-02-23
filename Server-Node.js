@@ -1,5 +1,6 @@
 //USING NODE
 
+//Added Current time for getting the exact log of the server 
 const http = require("http");
 const fs = require('fs'); 
 
