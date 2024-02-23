@@ -1,6 +1,9 @@
-const express = require("express");
+//USING EXPRESS
+
+const express = require("express")
 const fs = require("fs");
 
+//Added Current time for getting the exact log of the server 
 const app = express();
 
 app.use((request, response, next) => {
