@@ -1,6 +1,6 @@
 Learning backend with : Node.js & Express.js
 ----------------------------------------------------------------------------------------------
-<p>
+<span>
 Why Node or Express ?
 => Node.js : Purpose: Runtime environment for server-side JavaScript. 
              Strengths: High concurrency, real-time applications, and I/O-heavy tasks. 
@@ -11,4 +11,4 @@ Why Node or Express ?
              Strengths: Rapid web application development, middleware support, and routing.
              Pros: Minimalistic, flexible, rich ecosystem, middleware integration.
              Cons: Adds abstraction layer, potential performance overhead.
-</p>
+</span>
