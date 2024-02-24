@@ -1,5 +1,2 @@
-Backend with :
-Node.js 
-Express.js 
-MongoDB
+Backend with Node.js , Express.js and MongoDB
 ----------------------------------------------------------------------------------------------
