@@ -1,25 +1,8 @@
-Request received on => 9:52:39 PM
-Request received on => 9:52:39 PM
-Request received on => 10:27:14 PM
-Request received on => 10:27:14 PM
-Request received on => 10:27:57 PM : /
-Request received on => 10:27:58 PM : /favicon.ico
-Request received on => 10:33:04 PM : /
-Request received on => 10:33:04 PM : /favicon.ico
-Request received on => 10:33:07 PM : /
-Request received on => 10:33:08 PM : /favicon.ico
-Request received on => 10:33:20 PM : /search
-Request received on => 10:33:20 PM : /favicon.ico
-Request received on => 10:33:38 PM : /search
-Request received on => 10:34:40 PM : /
-Request received on => 10:34:40 PM : /favicon.ico
-Request received on => 10:34:42 PM : /
-Request received on => 10:34:43 PM : /favicon.ico
-Request received on => 10:34:46 PM : /searfch
-Request received on => 10:34:47 PM : /favicon.ico
-Request received on => 10:34:53 PM : /search
-Request received on => 10:34:53 PM : /favicon.ico
-Request received on => 10:34:59 PM : /about
-Request received on => 10:34:59 PM : /favicon.ico
-Request received on => 10:35:14 PM : /
-Request received on => 10:35:14 PM : /favicon.ico
+Server requested on :  -> 1708866626739 : Method -> GET :  URL -> /
+Server requested on :  -> 1708866643331 : Method -> GET :  URL -> /about
+Server requested on :  -> 1708866649073 : Method -> GET :  URL -> /search
+Server requested on :  -> 1708866653527 : Method -> GET :  URL -> /ab
+Server requested on :  -> 1708866669267 : Method -> GET :  URL -> /about?name=yash
+Server requested on :  -> 1708868360665 : Method -> GET :  URL -> /
+Server requested on :  -> 1708868370583 : Method -> GET :  URL -> /about?name=yash
+Server requested on :  -> 1708868706758 : Method -> GET :  URL -> /about?name=yash

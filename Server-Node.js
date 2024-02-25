@@ -1,27 +1,40 @@
-//USING NODE
-
-//Added Current time for getting the exact log of the server
 const http = require("http");
-const fs = require("fs");
+const url = require('url');
+const fs = require("fs")
+const config = require('./config');
 
 const node_server = http.createServer((request, response) => {
-  const logTime = new Date();
-  const Time = logTime.toLocaleTimeString();
-  const serverLog = `Request received on => ${Time} : ${request.url}\n`;
-  fs.appendFile("ServerLogFile.txt", serverLog, "utf-8", (error) => {
-    switch (request.url) {
-        case "/" : response.end("Landing page")
-        break
-        case "/search" : response.end("Search section")
-        break
-        case "/about" : response.end("About us")
-        break
-        default : response.end("Sorry page not found")
-    }
-    console.log(`Exception => ${error}`);
-  });
+    if (request.url === "/favicon.ico") return response.end();
+    const serverLog = `Server requested on :  -> ${Date.now()} : Method -> ${request.method} :  URL -> ${request.url
+        }\n`;
+    const serverUrl = url.parse(request.url, true); // Passing true as the second argument to parse the query string
+    console.log(serverUrl);
+    fs.appendFile("ServerLogFile.txt", serverLog, "utf-8", (error) => {
+        switch (serverUrl.pathname) {
+            case "/":
+                response.end(
+                    `This is the landing page, welcome ${serverUrl.pathname}`
+                );
+                break;
+            case "/search":
+                response.end("Search section");
+                break;
+            case "/about":
+                const username = serverUrl.query.name;
+                console.log(username);
+                if (username) {
+                    response.end(`Welcome ${username}`);
+                } else {
+                    response.end("Hello wanna about us ");
+                }
+                break;
+            default:
+                response.end("Sorry page not found");
+        }
+        console.log(`Exception => ${error}`);
+    });
 });
 
-node_server.listen(8000, () => {
-  console.log("Server Initialized");
+node_server.listen(config.port, () => {
+    console.log("Server Initialized");
 });
