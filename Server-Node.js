@@ -1,3 +1,5 @@
+//USING Node
+
 const http = require("http");
 const url = require('url');
 const fs = require("fs")
@@ -7,7 +9,7 @@ const node_server = http.createServer((request, response) => {
     if (request.url === "/favicon.ico") return response.end();
     const serverLog = `Server requested on :  -> ${Date.now()} : Method -> ${request.method} :  URL -> ${request.url
         }\n`;
-    const serverUrl = url.parse(request.url, true); // Passing true as the second argument to parse the query string
+    const serverUrl = url.parse(request.url, true); //passing true for query string 
     console.log(serverUrl);
     fs.appendFile("ServerLogFile.txt", serverLog, "utf-8", (error) => {
         switch (serverUrl.pathname) {
