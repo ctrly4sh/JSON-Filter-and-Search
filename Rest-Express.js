@@ -2,10 +2,9 @@ const express = require("express");
 const app = express();
 const users = require("./MOCK_DATA.json");
 const config = require("./config"); // for PORT number
-const PORT = config.port;
+const PORT = config.app;
 const fs = require("fs");
 
-//Middleware
 app.use(
     express.urlencoded({
         extended: false,
@@ -40,7 +39,6 @@ app
         });
     })
     .patch((request, response) => {
-        //Delete user with id
         return response.json({
             status: "pending",
         });
@@ -56,7 +54,7 @@ app.post("/api/users", (request, response) => {
     users.push({ ...body, "id": users.length + 1 });
     console.log(body);
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (error, data) => {
-        if(users){
+        if (users) {
             console.log("Got some data");
         }
         return response.json({
@@ -68,3 +66,4 @@ app.post("/api/users", (request, response) => {
 app.listen(PORT, () => {
     console.log("Server initialized");
 });
+
