@@ -5,11 +5,27 @@ const config = require("./config"); // for PORT number
 const PORT = config.app;
 const fs = require("fs");
 
+console.log(PORT); // 6969
+
+
 app.use(
     express.urlencoded({
         extended: false,
     })
 );
+
+app.use((request, response, next) => {
+    fs.writeFile('./MiddleWareLog.txt',
+    `Requested on -> ${Date.now()} : Method -> ${request}`,()=>{
+        console.log("Data Logged");
+    })
+next() // MW1 -> MW2 
+})
+
+app.use((request, response, next) => {
+    console.log("MW -> 2")
+    next() // MW2 -> other part of the server
+})
 
 //ROUTES
 app.get("/api/users", (request, response) => {
@@ -25,18 +41,16 @@ app.get("/users", (request, response) => {
     return response.send(html);
 });
 
-app
-    .route("/api/users/:id")
+app.route("/api/users/:id")
     .get((request, response) => {
         const id = Number(request.params.id);
         const user = users.find((user) => user.id === id);
         return response.json(user);
     })
     .post((request, response) => {
-        //Edit user with ide
-        return response.json({
-            status: "pending",
-        });
+        const id = Number(request.params.id);
+        const user = users.find((user) => user.id === id);
+        return response.json(user);
     })
     .patch((request, response) => {
         return response.json({
