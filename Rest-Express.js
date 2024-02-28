@@ -16,7 +16,7 @@ app.use(
 
 app.use((request, response, next) => {
     fs.writeFile('./MiddleWareLog.txt',
-        `Requested on -> ${Date.now()} : Method -> ${request}`, () => {
+        `Requested on -> ${Date.now()} : Method -> ${request.method}`, () => { //logged the middle ware details
             console.log("Data Logged");
         })
     next() // MW1 -> MW2 
@@ -29,6 +29,7 @@ app.use((request, response, next) => {
 
 
 app.get("/api/users", (request, response) => {
+    response.setHeader('X-Author' , 'Yash Tiwari')
     return response.json(users);
 });
 
