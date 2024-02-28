@@ -1,0 +1,13 @@
+STATUS CODES
+
+100 - 199 -> Informational responses
+
+200 - 299 -> Successful responses
+
+300 - 399 -> Redirection responses
+
+400- 499 -> client error
+
+500 - 599 -> server error 
+
+Source : https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
