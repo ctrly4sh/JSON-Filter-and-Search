@@ -1,0 +1,4 @@
+Schema   -> defines the structure of the database
+
+Using -> scheme -> CRUD [Create , Read , Update , Delete] 
+            
