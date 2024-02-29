@@ -4,9 +4,40 @@ const users = require("./MOCK_DATA.json");
 const config = require("./config"); // for PORT number
 const PORT = config.app;
 const fs = require("fs");
+const mongoose = require('mongoose');
+const { triggerAsyncId } = require("async_hooks");
 
-console.log(PORT); // 6969
+mongoose.connect('mongodb://127.0.0.1:27017/backendLearning').then(
+    () => { console.log("MongoDB Connected"); }
+).catch((error) => { console.log("Error occcured " , error); })
 
+
+//SCHEMA
+const userSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        required: false,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    jobTitle: {
+        type: String,
+        required: true,
+    },
+    gender: {
+        type: String,
+        required: true
+    }
+})
+
+const user = mongoose.model('user', userSchema);
 
 app.use(
     express.urlencoded({
@@ -29,7 +60,7 @@ app.use((request, response, next) => {
 
 
 app.get("/api/users", (request, response) => {
-    response.setHeader('X-Author' , 'Yash Tiwari')
+    response.setHeader('X-Author', 'Yash Tiwari')
     return response.json(users);
 });
 
@@ -68,11 +99,11 @@ app.post("/api/users", (request, response) => {
     const body = request.body;
     users.push({ ...body, "id": users.length + 1 });
     console.log(body);
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (error, data) => {
+    fs.writeFile("./MOCK_DATA.json", JSON.Stringify(users), (error, data) => {
         if (users) {
             console.log("Got some data");
         }
-        return response.json({
+        return response.status(201).json({
             dataGot: true,
         });
     });
