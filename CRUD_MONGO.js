@@ -11,7 +11,7 @@ app.get('/', (request, response) => {
 //Connection with mongo DB
 const connect = mongoose.connect('mongodb://127.0.0.1:27017/LearningBackend-01');
 
-connect.then(()=> console.log("Mongo DB connected"));
+connect.then(() => console.log("Mongo DB connected"));
 
 //Schema of the database
 const userSchema = mongoose.Schema({
@@ -29,10 +29,17 @@ const userSchema = mongoose.Schema({
     }
 })
 
-const crudUser = mongoose.model('user' , userSchema);
+const crudUser = mongoose.model('user', userSchema);
 
 
 
-app
+app.post('/api/users', async (request, response) => {
+    const body = request.body;
+
+    if (!body || !body.firstName ||!body.lastName || !body.email) {
+        return response.status(400).json({
+            message : "Fields are missing , all fields are required"})
+        }
+})
 
 app.listen(8080, () => { `Server stareted on port ${PORT}` })
