@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+
     lastName: {
         type: String,
         required: true
@@ -27,19 +28,25 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     }
+
 })
 
-const crudUser = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 
-
+app.use(express.urlencoded({ extended: false }))
 
 app.post('/api/users', async (request, response) => {
     const body = request.body;
 
-    if (!body || !body.firstName ||!body.lastName || !body.email) {
-        return response.status(400).json({
-            message : "Fields are missing , all fields are required"})
-        }
+    if (!body || !body.firstName || !body.lastName || !body.email) {
+        return response.status(400).json({ message: "Fields are missing all fields are required" })
+    }
+
+    await User.create({
+        firstName : body.firstName
+        
+    })
+
 })
 
 app.listen(8080, () => { `Server stareted on port ${PORT}` })
