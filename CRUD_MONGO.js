@@ -28,12 +28,22 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     }
-
-})
+},
+{timestamps : true}
+)
 
 const User = mongoose.model('user', userSchema);
 
 app.use(express.urlencoded({ extended: false }))
+
+
+app.get("/users" , async (request , response)=>{
+    const allEntries = await User.find({})
+    const html = `
+    ${allEntries.map((user) => `<li>${user.firstName}`)}
+    `
+    return response.send(html)
+})
 
 app.post('/api/users', async (request, response) => {
     const body = request.body;
@@ -41,11 +51,15 @@ app.post('/api/users', async (request, response) => {
     if (!body || !body.firstName || !body.lastName || !body.email) {
         return response.status(400).json({ message: "Fields are missing all fields are required" })
     }
+    
+    const result = await User.create({
+        firstName : body.firstName,
+        lastName : body.lastName,
+        email : body.email,
+    });
 
-    await User.create({
-        firstName : body.firstName
-        
-    })
+    console.log(result);
+    return response.status(201).json({ Message : "success"})
 
 })
 
